@@ -765,6 +765,10 @@ dialog p {
 .calendar-binding { position:absolute; inset:-42px 17% auto; display:flex; justify-content:space-between; }
 .calendar-binding span { width:17px; height:48px; border:3px solid #9eaa92; border-radius:12px; background:#eeeee540; }
 .calendar-object h1 { font-size:clamp(25px, 3vw, 36px); max-width:700px; }
+.calendar-decoration { display:flex; justify-content:flex-end; align-items:center; gap:24px; padding:0 0 24px; margin-bottom:28px; border-bottom:1px solid var(--line); }
+.calendar-decoration > span { font-size:11px; letter-spacing:.15em; color:var(--muted); }
+.calendar-decoration .calendar-mini-grid { width:180px; flex-shrink:0; }
+.calendar-text { max-width:760px; font-size:16px; line-height:1.9; }
 .calendar-sheet { padding:0 0 24px; margin:0 0 24px; border-bottom:1px solid var(--line); }
 .calendar-sheet[hidden] { display:none; }
 .calendar-sheet-top { display:flex; justify-content:space-between; color:#8a775e; font-size:10px; letter-spacing:.15em; padding:15px 0; border-top:1px solid var(--line); }
@@ -827,6 +831,11 @@ dialog p {
   pointer-events:none;
   z-index:1;
 }
+.support-notebook-continuous { display:block; max-width:960px; }
+.support-notebook-continuous::before { left:-12px; }
+.support-notebook-continuous .notebook-page { padding:40px 48px 40px 64px; min-height:0; border-radius:12px; background:none; }
+.support-notebook-continuous h1,
+.support-notebook-continuous .notebook-entry-text { max-width:760px; margin-left:auto; margin-right:auto; }
 .notebook-page { position:relative; min-width:0; min-height:480px; padding:28px 40px 54px; }
 .notebook-page[hidden] { display:none; }
 .notebook-page:nth-child(odd) { border-radius:12px 0 0 12px; background:linear-gradient(to left, #b9ad9328, transparent 32px); }
@@ -879,6 +888,8 @@ dialog p {
   .letter-topline { margin-bottom:30px; }
   .letter-body { font-size:17px; }
   .calendar-sheet-layout { grid-template-columns:1fr; gap:8px; }
+  .calendar-decoration { gap:12px; }
+  .calendar-decoration .calendar-mini-grid { width:140px; }
   .calendar-mark { display:flex; align-items:center; gap:28px; }
   .calendar-large-number { font-size:80px; }
   .calendar-mini-grid { max-width:180px; flex:1; }
@@ -890,6 +901,7 @@ dialog p {
   .support-notebook { grid-template-columns:1fr; }
   .support-notebook::before { width:26px; left:-9px; }
   .notebook-page { padding:30px 24px 54px 36px; min-height:0; }
+  .support-notebook-continuous .notebook-page { padding:30px 24px 30px 36px; }
   .notebook-controls { flex-wrap:wrap; }
   .notebook-status { order:-1; width:100%; }
   .notebook-page-blank { display:none; }
