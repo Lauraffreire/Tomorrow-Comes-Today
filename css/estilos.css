@@ -211,6 +211,26 @@ dialog img {
   border-radius:var(--radius);
 }
 
+.project-image-grid {
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:12px;
+  margin-top:24px;
+}
+.project-image-grid img {
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:0;
+  max-height:none;
+  object-fit:cover;
+  margin:0;
+}
+.project-image-grid img:first-child {
+  grid-column:1 / -1;
+  height:auto;
+}
+
 dialog p {
   white-space:normal;
   margin:0 0 16px;
@@ -720,6 +740,7 @@ dialog p {
 .back-to-objects { font-size:12px; color:var(--muted); text-decoration:none; }
 .object-page-heading { margin-bottom:32px; }
 .object-page h1 {
+  text-align:left;
   color:var(--green);
   font:clamp(28px, 3.6vw, 42px)/1.2 'Poppins',sans-serif;
   letter-spacing:-.035em;
@@ -788,7 +809,8 @@ dialog p {
 .calendar-status { font-size:11px; color:var(--muted); text-align:center; }
 
 /* Fotografias: o texto como notas na margem de uma imagem. */
-.photo-album > h1 { max-width:700px; margin:0 auto 48px; }
+.photo-album { max-width:1000px; margin:0 auto; }
+.photo-album > h1 { max-width:none; margin:0 0 48px; padding:0 20px 0 50px; }
 .photo-spread { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); max-width:1000px; margin:0 auto; align-items:start; gap:52px 42px; padding:0 20px; }
 .memory-photo {
   min-width:0;
@@ -856,7 +878,7 @@ dialog p {
 .notebook-page-left { border-radius:12px 0 0 12px; background:linear-gradient(to left, #b9ad9328, transparent 32px); }
 .notebook-page-right { border-radius:0 12px 12px 0; background:linear-gradient(to right, #b9ad9338, transparent 32px); }
 .object-page-support main { max-width:1440px; }
-.support-notebook h1 { max-width:650px; font-size:28px; line-height:32px; }
+.support-notebook h1 { max-width:760px; font-size:28px; line-height:32px; }
 .support-notebook h2 { font:italic 24px/32px 'Poppins',sans-serif; margin:0 0 32px; color:var(--green); }
 .notebook-intro,
 .notebook-entry-text {
@@ -902,6 +924,7 @@ dialog p {
   .calendar-mini-grid { max-width:180px; flex:1; }
   .calendar-controls { flex-wrap:wrap; gap:12px; }
   .calendar-status { order:-1; width:100%; }
+  .photo-album > h1 { padding-left:38px; padding-right:8px; }
   .photo-spread { grid-template-columns:1fr; padding:0 8px; gap:32px; }
   .memory-photo:nth-child(even) { margin-top:0; }
   .memory-photo { transform:none; }
