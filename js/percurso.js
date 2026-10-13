@@ -44,13 +44,6 @@
     document.querySelectorAll('[data-journey-locked]').forEach((element) => {
       element.hidden = complete;
     });
-    if (complete && themes.includes(currentPage) && !document.querySelector('.journey-return')) {
-      const link = document.createElement('a');
-      link.className = 'journey-return';
-      link.href = 'index.html#objetos';
-      link.textContent = 'Exploraste todos os temas. Volta aos objetos para descobrir a conclusão →';
-      document.querySelector('main').append(link);
-    }
   }
 
   updateJourney();

@@ -799,6 +799,11 @@ dialog p {
   transform:rotate(-2deg);
 }
 .memory-photo:nth-child(even) { transform:rotate(2deg); margin-top:54px; }
+@media(min-width:761px) {
+  .photo-spread:has(> .memory-photo:last-child:nth-child(3)) { grid-template-rows:min-content 1fr; }
+  .photo-spread:has(> .memory-photo:last-child:nth-child(3)) > .memory-photo:first-child { grid-row:1 / span 2; }
+  .photo-spread > .memory-photo:last-child:nth-child(3) { grid-column:2; grid-row:2; }
+}
 .memory-photo-image { background:radial-gradient(ellipse at 45% 35%, #d6d5c2, #9fa48e); border:1px solid #a6a993; }
 .memory-photo-image svg { display:block; width:100%; height:210px; fill:none; stroke:#f7f4e5; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
 .memory-photo-image img { display:block; width:100%; max-width:100%; height:clamp(150px, 24vw, 240px); max-height:35svh; object-fit:contain; }
