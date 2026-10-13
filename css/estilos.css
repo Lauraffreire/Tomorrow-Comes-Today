@@ -449,17 +449,10 @@ dialog p {
   height:clamp(90px, 17svh, 125px);
   fill:var(--paper);
   stroke:currentColor;
-  stroke-width:1.5;
+  stroke-width:3;
   stroke-linecap:round;
   stroke-linejoin:round;
-  filter:drop-shadow(3px 7px 3px #393b2410);
-  transition:filter .3s ease;
-}
-
-.scene-object .object-trace {
-  fill:none;
-  stroke:#8d7561;
-  stroke-dasharray:3 5;
+  filter:none;
 }
 
 .object-name,
@@ -488,11 +481,20 @@ dialog p {
   transform:translateY(0);
 }
 
-.object-message { top:10%; left:0; transform:rotate(-7deg); }
+.object-message { top:10%; left:8%; transform:rotate(-7deg); }
 .object-calendar { top:8%; right:0; transform:rotate(6deg); }
 .object-family { top:43%; left:-2%; transform:rotate(-4deg); }
 .object-photo { top:45%; right:-2%; transform:rotate(8deg); }
 .object-notebook { bottom:0; left:33%; transform:rotate(-3deg); }
+.object-conclusion { top:40%; left:40%; width:22%; }
+.scene-object.object-conclusion svg { height:90px; }
+[data-journey-unlocked][hidden],
+[data-journey-locked][hidden] { display:none !important; }
+.journey-return { display:block; max-width:760px; margin:36px auto 0; color:var(--green); font-size:13px; }
+.conclusion-paper { max-width:860px; margin:auto; padding:40px clamp(24px, 5vw, 64px); background:#f9f7ee; border:1px solid var(--line); }
+.conclusion-paper .reading { font-size:17px; line-height:1.9; }
+.conclusion-paper .reading p:last-child { margin-bottom:0; }
+.conclusion-symbol { display:block; width:80px; margin:0 0 28px; fill:none; stroke:var(--green); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
 
 .scene-object:hover,
 .scene-object:focus-visible {
@@ -504,7 +506,7 @@ dialog p {
 .scene-object:focus-visible svg,
 .scene-object:hover img,
 .scene-object:focus-visible img {
-  filter:drop-shadow(4px 10px 4px #393b2425);
+  filter:none;
 }
 
 .introduction-link {
