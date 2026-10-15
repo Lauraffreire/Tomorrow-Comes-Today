@@ -899,13 +899,14 @@ dialog p {
 .archive-intro { max-width:720px; color:var(--muted); margin-bottom:36px; }
 .project-catalogue { border-top:1px solid var(--line); padding-top:28px; }
 .project-archive { grid-template-columns:repeat(3, minmax(0, 1fr)); gap:36px 28px; align-items:stretch; }
-.project-archive .project-card { padding:16px; background:var(--green); color:#fff; border:3px solid var(--green); border-radius:var(--radius); }
-.project-archive .project-card:hover { background:var(--green); border-color:var(--green); }
+.project-archive .project-card { padding:16px; background:#fcf8ec; color:#2c4230; border:3px solid #2c4230; border-radius:var(--radius); }
+.project-archive .project-card:hover { background:#fcf8ec; border-color:#2c4230; }
 .project-archive .project-card img { border-radius:var(--radius); }
-.project-archive .project-card .archive-number { margin:0 0 12px; font-size:10px; letter-spacing:.1em; color:#fff; }
-.project-archive .project-card > span:not(.archive-number):not(.archive-open) { font:22px/1.35 'Poppins',sans-serif; color:#fff; }
-.project-archive .project-card small { margin-bottom:0; color:#fff; }
-.project-archive .project-card .archive-open { display:flex; justify-content:space-between; font-size:12px; color:#fff; margin:auto 0 0; padding-top:8px; }
+.project-archive .project-card[data-detail="project-6"] img { object-position:left top; }
+.project-archive .project-card .archive-number { margin:0 0 12px; font-size:10px; letter-spacing:.1em; color:#2c4230; }
+.project-archive .project-card > span:not(.archive-number):not(.archive-open) { font:22px/1.35 'Poppins',sans-serif; color:#2c4230; }
+.project-archive .project-card small { margin-bottom:0; color:#2c4230; }
+.project-archive .project-card .archive-open { display:flex; justify-content:space-between; font-size:12px; color:#2c4230; margin:auto 0 0; padding-top:8px; }
 .object-page-catalogue dialog { width:min(820px, calc(100% - 32px)); }
 .object-page-catalogue .close-detail { display:block; margin-left:auto; }
 
