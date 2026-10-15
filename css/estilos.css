@@ -380,6 +380,7 @@ dialog p {
 
 .home-introduction > h2 {
   margin:0;
+  color:var(--green);
   font-size:clamp(24px, 2.5vw, 36px);
   letter-spacing:-1px;
 }
