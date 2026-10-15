@@ -359,7 +359,7 @@ dialog p {
 .scroll-mark {
   display:block;
   font-size:28px;
-  color:#737e69;
+  color:#6b6c64;
 }
 
 .home-introduction {
@@ -476,6 +476,12 @@ dialog p {
   filter:none;
 }
 
+.scene-object svg {
+  fill:#f4ecd9;
+  stroke:#203d29;
+  stroke-width:5;
+}
+
 .object-name,
 .object-theme {
   display:block;
@@ -508,7 +514,7 @@ dialog p {
 .object-photo { top:45%; right:-2%; transform:rotate(8deg); }
 .object-notebook { bottom:0; left:33%; transform:rotate(-3deg); }
 .object-conclusion { top:40%; left:40%; width:22%; }
-.scene-object.object-conclusion img { height:90px; }
+.scene-object.object-conclusion :is(img, svg) { height:90px; }
 [data-journey-unlocked][hidden],
 [data-journey-locked][hidden] { display:none !important; }
 .journey-return { display:block; max-width:760px; margin:36px auto 0; color:var(--green); font-size:13px; }
@@ -550,17 +556,37 @@ dialog p {
 
 @media(max-width:760px) {
   .home-cover { grid-template-columns:1fr; }
-  .absence-scene { min-height:440px; max-width:540px; margin:0 auto; }
+  .absence-scene {
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:24px 16px;
+    min-height:0;
+    max-width:540px;
+    margin:16px auto;
+  }
+  .scene-table { inset:10% 0; }
+  .absence-scene .scene-object {
+    position:relative;
+    inset:auto;
+    width:100%;
+    min-width:0;
+    transform:none;
+    padding:8px;
+  }
+  .absence-scene .object-conclusion { grid-column:1 / -1; grid-row:4; justify-self:center; width:50%; }
+  .absence-scene .object-notebook { grid-column:1 / -1; justify-self:center; width:50%; }
+  .absence-scene .object-theme { opacity:1; transform:none; font-size:12px; }
   .scene-object svg,
-  .scene-object img { height:115px; }
+  .scene-object img { height:clamp(90px, 26vw, 140px); }
   .cover-invitation { font-size:13px; }
 }
 
 @media(max-width:380px) {
-  .absence-scene { min-height:460px; }
-  .scene-object { width:42%; }
   .object-name { font-size:15px; }
-  .object-notebook { left:29%; }
+}
+
+@media(hover:none) {
+  .scene-object .object-theme { opacity:1; transform:none; }
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -961,109 +987,134 @@ dialog p {
   .notebook-page[hidden] { display:block; }
   .notebook-page { padding:24px; }
 }
-/* Ilustrações fornecidas: os suportes crescem com o conteúdo. */
-.letter-paper,
-.calendar-object,
-.support-notebook-continuous,
-.memory-photo {
-  border:0;
-  border-radius:0;
-  box-shadow:none;
-  background-color:transparent;
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:100% 100%;
+/* Suportes em CSS que acompanham o conteudo. */
+.letter-paper, .calendar-object, .support-notebook-continuous, .memory-photo {
+  background:#fcf8ec;
+  border:4px solid #2c4230;
+  box-shadow:4px 6px 0 #a8b196;
 }
 .letter-paper {
-  background-image:url('../imagens/cartagrande.png');
-  background-size:118% 100%;
-  background-position:calc(50% - 16px) center;
-  padding:clamp(110px, 18vw, 180px) clamp(30px, 7vw, 80px) 72px;
+  border-radius:8px;
+  padding:clamp(100px, 15vw, 140px) clamp(22px, 5vw, 64px) 48px;
+  overflow:hidden;
+}
+.letter-paper::before, .letter-paper::after {
+  content:'';
+  position:absolute;
+  inset:0 0 auto;
+  height:clamp(70px, 11vw, 108px);
+  background:#2c4230;
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
+}
+.letter-paper::after {
+  inset:0 5px auto;
+  height:clamp(65px, 10vw, 100px);
+  background:#a8b196;
 }
 .letter-fold { display:none; }
-.object-page-calendar main { container-type:inline-size; }
 .calendar-object {
-  display:grid;
-  grid-template-rows:470fr 1233fr;
-  margin-top:-60px;
-  max-width:1120px;
-  min-height:calc(min(1120px, 100cqw) * 1703 / 924);
-  background:url('../imagens/calendáriogrande.png') center / 100% 100% no-repeat;
-  border:0;
+  display:block;
+  max-width:900px;
+  min-height:0;
+  margin:32px auto 0;
   padding:0;
+  border-radius:14px;
+}
+.calendar-object::before, .calendar-object::after {
+  content:'';
+  position:absolute;
+  top:-22px;
+  width:14px;
+  height:46px;
+  border:4px solid #2c4230;
+  border-radius:12px;
+  background:#a8b196;
+}
+.calendar-object::before { left:22%; }
+.calendar-object::after { right:22%; }
+.calendar-days-space {
+  height:clamp(100px, 18vw, 160px);
+  border-bottom:4px solid #2c4230;
+  border-radius:9px 9px 0 0;
+  background:#a8b196;
 }
 .calendar-content {
   min-width:0;
-  padding:20px 26% 64px;
+  padding:clamp(28px, 5vw, 56px) clamp(22px, 5vw, 64px);
 }
-.calendar-object h1,
-.calendar-text { max-width:680px; margin-inline:auto; padding:0; }
+.calendar-object h1, .calendar-text { max-width:680px; margin-inline:auto; padding:0; }
 .calendar-object h1 { font-size:clamp(24px, 3vw, 34px); }
 .calendar-text p:last-child { margin-bottom:0; }
 .support-notebook-continuous {
-  max-width:1120px;
-  background-image:url('../imagens/livrogrande.png');
-  background-size:100% 100%;
+  max-width:960px;
+  border-radius:16px;
+  box-shadow:6px 6px 0 #a8b196, 10px 10px 0 #2c4230;
 }
-.support-notebook-continuous::before { display:none; }
-.support-notebook-continuous h1 { margin-bottom:56px; }
+.support-notebook-continuous::before {
+  display:block;
+  inset:24px auto 24px -18px;
+  width:34px;
+  border:0;
+  background:repeating-linear-gradient(to bottom, transparent 0 18px,
+    #2c4230 18px 22px, #a8b196 22px 30px, #2c4230 30px 34px, transparent 34px 54px);
+}
+.support-notebook-continuous::after {
+  content:'';
+  position:absolute;
+  inset:20px auto 20px 42px;
+  width:2px;
+  background:#a8b196;
+  pointer-events:none;
+}
+.support-notebook-continuous h1 { margin-bottom:40px; }
 .support-notebook-continuous .notebook-page {
-  padding:80px 12% 64px 19%;
+  padding:clamp(32px, 5vw, 64px) clamp(22px, 5vw, 56px) clamp(32px, 5vw, 64px) clamp(64px, 9vw, 88px);
   background:none;
   border:0;
   box-shadow:none;
 }
 .notebook-entry-text { background:none; }
 .memory-photo {
-  container-type:inline-size;
-  background:none;
-  padding:0;
+  padding:clamp(12px, 2vw, 20px);
+  border-radius:10px;
   transform:none;
 }
 .memory-photo:nth-child(even) { transform:none; }
-.memory-photo-image,
-.memory-photo:nth-child(2) .memory-photo-image,
-.memory-photo:nth-child(3) .memory-photo-image {
-  background:transparent;
-  border:0;
-}
 .memory-photo .memory-photo-image,
 .memory-photo:nth-child(2) .memory-photo-image,
 .memory-photo:nth-child(3) .memory-photo-image {
   position:relative;
-  aspect-ratio:1024 / 1040;
-  background:url('../imagens/imagemgrande.png') center top / 100% auto no-repeat;
+  aspect-ratio:4 / 3;
+  background:#a8b196;
+  border:3px solid #2c4230;
+  border-radius:3px;
+  overflow:hidden;
 }
 .memory-photo-image img {
-  position:absolute;
-  left:9.765625%;
-  top:14.326923%;
-  width:80.46875%;
-  height:83.653846%;
+  position:static;
+  display:block;
+  width:100%;
+  height:100%;
   max-height:none;
   object-fit:cover;
 }
 .memory-photo-caption {
-  border-style:solid;
-  border-color:transparent;
-  border-width:0 calc(100cqw * 60 / 1024) calc(100cqw * 100 / 1024);
-  border-image-source:url('../imagens/imagemgrande.png');
-  border-image-slice:1040 60 100 60 fill;
-  border-image-repeat:stretch;
-  padding:12px clamp(16px, 3vw, 28px) 24px;
+  border:0;
+  border-image:none;
+  padding:24px clamp(4px, 1vw, 12px) 16px;
 }
 .conclusion-symbol { height:80px; object-fit:contain; }
 @media(max-width:760px) {
-  .letter-paper { padding:100px 28px 52px; }
-  .calendar-content { padding:16px 25% 40px; }
-  .support-notebook-continuous .notebook-page { padding:64px 12% 48px 19%; }
-  .memory-photo-caption { padding-top:16px; }
+  .photo-album > h1 { padding-inline:0; }
+  .photo-spread { padding:0; }
+  .memory-photo:nth-child(even) { margin-top:0; }
+  .support-notebook-continuous { margin-inline:8px; }
 }
 @media(max-width:380px) {
-  .calendar-text { font-size:15px; }
-  .letter-body,
-  .memory-photo p,
-  .notebook-entry-text { font-size:15px; }
+  .calendar-text, .letter-body, .memory-photo p, .notebook-entry-text { font-size:15px; }
+}
+@media print {
+  .letter-paper, .calendar-object, .support-notebook-continuous, .memory-photo { box-shadow:none; }
 }
 
 /* Títulos em negrito em todas as páginas. */
